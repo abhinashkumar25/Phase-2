@@ -1,0 +1,109 @@
+/* Layout */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+    padding: 40px 20px;
+    background: linear-gradient(to right, #f3e5f5, #e1f5fe);
+}
+
+/* Title */
+.page-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Table Container (for responsiveness) */
+.table-container {
+    overflow-x: auto;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Caption */
+caption {
+    padding: 15px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* Header */
+thead {
+    background: #6a1b9a;
+    color: white;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: center;
+}
+
+/* Borders */
+th, td {
+    border-bottom: 1px solid #ddd;
+}
+
+/* Zebra Striping */
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Hover Effect */
+tbody tr:hover {
+    background-color: #e1bee7;
+    transition: 0.3s;
+}
+
+/* Footer */
+tfoot {
+    background: #ede7f6;
+    font-weight: bold;
+}
+
+/* Animation Keyframes */
+@keyframes fadeSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Apply Animation to Table */
+table {
+    animation: fadeSlideUp 0.8s ease-in-out;
+}
+
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+    th, td {
+        padding: 8px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 420px) {
+    caption { font-size: 14px; }
+    th, td { padding: 6px; font-size: 13px; }
+    table { box-shadow: none; border-radius: 6px; }
+}
+
+

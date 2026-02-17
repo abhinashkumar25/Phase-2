@@ -1,0 +1,89 @@
+/* ===== PROFILE PAGE ===== */
+.profile-page {
+    padding: 120px 10% 60px;
+    background: #f9fafb;
+    color: #111827;
+}
+
+/* Page Title */
+.page-title {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 2.5rem;
+    margin-top: 3rem;
+}
+
+/* Intro Section */
+.profile-intro {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.profile-intro img {
+    width: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.intro-text {
+    max-width: 500px;
+}
+
+/* Cards Section */
+.profile-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+/* Card Design */
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    transition: 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+}
+
+.card h3 {
+    margin-bottom: 15px;
+}
+
+/* subtle float for avatar */
+@keyframes avatarFloat {
+  from { transform: translateY(8px); opacity: 0.9; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+.profile-intro img { animation: avatarFloat 0.9s ease both; transition: transform 0.35s ease; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .profile-intro {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+        margin-top: 2rem;
+    }
+
+    .profile-intro img {
+        width: 180px;
+    }
+
+    .profile-page { padding: 80px 6% 40px; }
+}
+
+@media (max-width: 420px) {
+    .profile-page { padding: 60px 4% 30px; }
+    .page-title { font-size: 1.6rem; }
+    .profile-intro img { width: 140px; }
+    .card { padding: 18px; }
+}
+
