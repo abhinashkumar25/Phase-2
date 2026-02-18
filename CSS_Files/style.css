@@ -10,7 +10,6 @@
     --secondary: #6366f1;
     --dark: #111827;
     --header-height: 3rem;
-    /* default header height (used to offset fixed header) */
 }
 
 /* ===== BODY ===== */
@@ -33,25 +32,16 @@ header {
     width: 100%;
     z-index: 1000;
     color: white;
-    height: 3rem;
+    height: 1rem;
     min-height: var(--header-height);
-    /* ensure header height aligns with offset variable */
+    transition: padding 0.25s ease, height 0.25s ease, background 0.25s ease;
 }
-
-button {
-    width: 100px;
-    background: red;
-    border: 3px solid red;
+.logo {
     display: none;
 }
 
-.nav-toggle {
+h1 img {
     display: none;
-    /* visible only on mobile via media query */
-    background: transparent;
-    border: none;
-    color: inherit;
-    cursor: pointer;
 }
 
 nav ul {
@@ -71,31 +61,13 @@ nav a:hover {
     color: yellow;
 }
 
-/* ensure fixed header does not cover page content */
-header+main,
-header+section,
-header+.hero,
-header+.profile-page,
-header+.courses-main,
-header+.feedback-main,
-header+.grades-main,
-header+.contact-section {
-    /* extra safety offset so titles are never overlapped */
+/* Prevent header overlap */
+header + main {
     padding-top: calc(var(--header-height) + 0.5rem);
-}
-
-/* Make top headings visible (also helps anchor scrolling) */
-.page-title,
-.hero-content h2,
-section > h2,
-.profile-page h2 {
-    scroll-margin-top: calc(var(--header-height) + 1rem);
-    margin-top: 0.5rem; /* small visual gap from header */
 }
 
 /* ===== HERO SECTION ===== */
 .hero {
-    /* desktop: full-viewport look, but allow content to grow if needed */
     min-height: 100vh;
     height: auto;
     display: flex;
@@ -103,7 +75,6 @@ section > h2,
     padding: 100px 10%;
 }
 
-/* ===== HERO FLEX CONTAINER ===== */
 .hero-container {
     display: flex;
     align-items: center;
@@ -113,16 +84,13 @@ section > h2,
     color: white;
 }
 
-/* ===== LEFT IMAGE ===== */
 .hero-image img {
     order: 2;
     width: 500px;
     border-radius: 0;
-    /* box-shadow: 0 10px 30px rgba(0,0,0,0.5); */
     animation: slideLeft 1s ease-in-out;
 }
 
-/* ===== RIGHT CONTENT ===== */
 .hero-content {
     order: 1;
     max-width: 500px;
@@ -175,7 +143,6 @@ footer {
     justify-content: center;
     width: 40px;
     height: 40px;
-    color: white;
     background: rgba(255,255,255,0.03);
     border-radius: 8px;
     transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
@@ -187,12 +154,12 @@ footer {
     box-shadow: 0 6px 20px rgba(0,0,0,0.35);
 }
 
-.footer-social svg { width: 20px; height: 20px; fill: currentColor; }
-
-@media (max-width: 480px) {
-    .footer-social { gap: 12px; }
-    .footer-social a { width: 36px; height: 36px; }
-    button{display: block;}
+/* ===== GLOBAL IMAGE ===== */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.35s ease, filter 0.35s ease;
 }
 
 /* ===== ANIMATIONS ===== */
@@ -201,7 +168,6 @@ footer {
         opacity: 0;
         transform: translateX(-50px);
     }
-
     to {
         opacity: 1;
         transform: translateX(0);
@@ -213,7 +179,6 @@ footer {
         opacity: 0;
         transform: translateX(50px);
     }
-
     to {
         opacity: 1;
         transform: translateX(0);
@@ -225,53 +190,22 @@ footer {
         transform: translateY(6px);
         opacity: 0.85;
     }
-
     to {
         transform: translateY(0);
         opacity: 1;
     }
 }
 
-@keyframes navFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-6px);
-    }
+/* ===== RESPONSIVE ===== */
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Global image handling + smooth transitions */
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    transition: transform 0.35s ease, filter 0.35s ease;
-}
-
-a,
-button,
-.card,
-.course-card,
-.form-card {
-    transition: all 0.25s ease;
-}
-
-header {
-    transition: padding 0.25s ease, height 0.25s ease, background 0.25s ease;
-}
-
-/* ===== RESPONSIVE: desktop → tablet → mobile ===== */
 @media (max-width: 1024px) {
+
     :root {
         --header-height: 3.5rem;
     }
 
     header {
-        padding: 14px 28px;
+        padding: 14px 18px;
     }
 
     nav ul {
@@ -294,28 +228,20 @@ header {
 }
 
 @media (max-width: 768px) {
+
     :root {
         --header-height: 5.5rem;
     }
 
-    /* header stacks and nav wraps on smaller screens */
     header {
         flex-direction: column;
         align-items: center;
         padding: 12px 18px;
         gap: 8px;
         height: auto;
-        min-height: var(--header-height);
-        position: fixed;    /* keep header fixed on small screens */
-        top: 0;
-        left: 0;
-        right: 0;
-        width: 100%;
-        z-index: 1000;
     }
 
     nav ul {
-        flex-direction: row;
         flex-wrap: wrap;
         gap: 12px;
         justify-content: center;
@@ -323,13 +249,9 @@ header {
     }
 
     .hero {
-        height: auto;
-        /* let content determine height */
         min-height: 40vh;
-        /* sensible minimum for visual balance */
         padding: 40px 6%;
         align-items: flex-start;
-        /* avoid vertical centering that can hide content */
     }
 
     .hero-container {
@@ -349,9 +271,11 @@ header {
     .btn {
         padding: 10px 20px;
     }
+    
 }
 
 @media (max-width: 480px) {
+
     :root {
         --header-height: 6.5rem;
     }
@@ -362,63 +286,35 @@ header {
 
     header h1 {
         font-size: 1.05rem;
-    }
-
-    /* show menu button on mobile, hide desktop/tablet nav */
-    .nav-toggle {
         display: flex;
+        gap: 8px;
         align-items: center;
-        justify-content: center;
-        width: auto;
-        height: 40px;
-        padding: 0 12px;
-        background: transparent;
-        border: none;
-        color: white;
-        cursor: pointer;
-        font-size: 0.95rem;
-        font-weight: 600;
-        transition: opacity 0.2s ease;
     }
 
-    .nav-toggle:hover {
-        opacity: 0.8;
+    h1 img {
+        display: block;
+        width: 24px;
+        height: 24px;
     }
 
-    /* default: hide standard nav list on mobile — opened via menu button */
     nav ul {
         display: none;
-    }
-
-    /* overlay navigation when menu button opens */
-    header.nav-open nav {
-        position: fixed;
-        inset: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: linear-gradient(rgba(2, 6, 23, 0.92), rgba(2, 6, 23, 0.96));
-        z-index: 1200;
-        animation: navFadeIn 0.28s ease both;
     }
 
     header.nav-open nav ul {
         display: flex;
         flex-direction: column;
         gap: 18px;
-        list-style: none;
         text-align: center;
     }
 
     nav a {
-        color: white;
         font-size: 1.05rem;
         padding: 10px 12px;
         display: inline-block;
     }
 
     .hero {
-        height: auto;
         min-height: 30vh;
         padding: 30px 4%;
         align-items: flex-start;
@@ -435,10 +331,21 @@ header {
     .btn {
         padding: 8px 14px;
     }
+
+    .header-top{
+        display: flex;
+        gap: 8px;
+        align-items: center;
+    }
+     .logo {
+        display: block;
+        width: 30px; /* optional size */
+        cursor: pointer;
+    }
 }
 
-/* Small improvements for very small devices */
 @media (max-width: 360px) {
+
     nav ul {
         gap: 6px;
     }
@@ -447,3 +354,4 @@ header {
         font-size: 0.95rem;
     }
 }
+

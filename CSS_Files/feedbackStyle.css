@@ -14,6 +14,10 @@ main {
     background: linear-gradient(to right, #e0f7fa, #e1bee7);
 }
 
+.logo {
+    display: none;
+}
+
 /* Title */
 .page-title {
     margin-bottom: 30px;
@@ -23,10 +27,11 @@ main {
 .feedback-form {
     width: 100%;
     max-width: 600px;
-    background: white;
+    background: #fff;
     padding: 30px;
     border-radius: 12px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    animation: popIn 0.6s ease both;
 }
 
 /* Form Group */
@@ -43,7 +48,9 @@ label {
 }
 
 /* Inputs */
-input, select, textarea {
+input,
+select,
+textarea {
     padding: 10px;
     border-radius: 6px;
     border: 1px solid #ccc;
@@ -56,10 +63,10 @@ select:focus,
 textarea:focus {
     border-color: #6a1b9a;
     outline: none;
-    box-shadow: 0 0 8px rgba(106,27,154,0.4);
+    box-shadow: 0 0 8px rgba(106, 27, 154, 0.4);
 }
 
-/* Radio & Checkbox */
+/* Radio & Checkbox Groups */
 .radio-group,
 .checkbox-group {
     display: flex;
@@ -72,7 +79,7 @@ textarea:focus {
     padding: 12px;
     border: none;
     background: #6a1b9a;
-    color: white;
+    color: #fff;
     font-weight: bold;
     border-radius: 6px;
     cursor: pointer;
@@ -85,19 +92,49 @@ textarea:focus {
     transform: scale(1.05);
 }
 
-/* small entrance animation */
+/* Animation */
 @keyframes popIn {
-    from { opacity: 0; transform: scale(0.98) translateY(8px); }
-    to   { opacity: 1; transform: scale(1) translateY(0); }
+    from {
+        opacity: 0;
+        transform: scale(0.98) translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
 }
-
-.feedback-form { animation: popIn 0.6s ease both; }
 
 /* Responsive */
 @media (max-width: 600px) {
-    .feedback-form { padding: 18px; }
-    .page-title { font-size: 1.6rem; }
-    input, select, textarea { font-size: 0.95rem; }
-    .submit-btn { width: 100%; padding: 12px; }
+    .feedback-form {
+        padding: 18px;
+    }
+
+    .page-title {
+        font-size: 1.6rem;
+    }
+
+    input,
+    select,
+    textarea {
+        font-size: 0.95rem;
+    }
+
+    .submit-btn {
+        width: 100%;
+    }
 }
 
+
+@media (max-width: 480px) {
+    .header-top{
+        display: flex;
+        gap: 8px;
+        align-items: center;
+    }
+     .logo {
+        display: block;
+        width: 30px; /* optional size */
+        cursor: pointer;
+    }
+}
